@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proje Bulur - Yakında Hizmetinizde</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: url('https://www.yapitrend.com.tr/uploads/1588664877_G__rsel_1_36349651590244568.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .logo {
+            font-size: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ffc107, #ff5722);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 70px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        small {
+            font-size: 14px;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .social-icons img {
+            width: 35px;
+            transition: transform 0.3s;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="logo">Proje Bulur</div>
+        <h1>Yakında Hizmetinizde</h1>
+        <p>İnşaat projelerini bireysel ve kurumsal yatırımcılarla buluşturuyoruz.</p>
+        <div id="countdown">
+            <div class="time-box"><span id="days"></span><small>Gün</small></div>
+            <div class="time-box"><span id="hours"></span><small>Saat</small></div>
+            <div class="time-box"><span id="minutes"></span><small>Dakika</small></div>
+            <div class="time-box"><span id="seconds"></span><small>Saniye</small></div>
+        </div>
+
+        <div class="social-icons">
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"></a>
+        </div>
+    </div>
+
+    <script>
+        // 30 gün sonra bitiş süresi
+        const countdownDate = new Date();
+        countdownDate.setDate(countdownDate.getDate() + 30);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = "<p>Hizmetimiz Başladı!</p>";
+            }
+        }
+
+        // Her saniye güncelle
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
